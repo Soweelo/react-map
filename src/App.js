@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import "./leaflet.css"
+import "./app.css";
+import Modal from "./components/modal/Modal"
+import Map from "./components/map/Map"
+import { useState } from "react";
+import useTrait from "./hooks/useTrait";
+import MapData from "./dummydata.json";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const showModal= useTrait(false);
+    const [mapId, setMapId] = useState("landscapeMap");
+
+    return (
+        <div className="homeContainer">
+            <Map
+                showModal={showModal}
+                mapId={mapId}
+                setMapId={setMapId}
+            />
+            <Modal showModal={showModal} />
+        </div>
+    );
 }
 
 export default App;
